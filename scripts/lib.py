@@ -4,16 +4,25 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path.home() / "Source/fontlab-mcp/src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # vendored fontlab_mcp
 from fontTools.pens.cu2quPen import Cu2QuPen  # noqa: E402
 from fontTools.pens.ttGlyphPen import TTGlyphPen  # noqa: E402
 from fontTools.ttLib import TTFont  # noqa: E402
 from fontlab_mcp import offline, stylize  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_VF = Path.home() / "Fonts/reference/lao/google/notosanslao/NotoSansLao[wdth,wght].ttf"
+REFS = Path.home() / "Fonts/reference"
+BASE_VF = REFS / "lao/google/notosanslao/NotoSansLao[wdth,wght].ttf"
 BASE = ROOT / "base/NotoSansLao-Black.ttf"
-LATIN = Path.home() / "Fonts/reference/google/blackopsone/BlackOpsOne-Regular.ttf"
+LATIN = REFS / "google/blackopsone/BlackOpsOne-Regular.ttf"
+
+
+def fetch_references():
+    """Download Noto Sans Lao and Black Ops One from github.com/google/fonts if missing."""
+    if not BASE_VF.exists():
+        offline.google_fonts_fetch("Noto Sans Lao", BASE_VF.parent)
+    if not LATIN.exists():
+        offline.google_fonts_fetch("Black Ops One", LATIN.parent)
 
 
 def lao_glyph_names(tt: TTFont) -> list[str]:

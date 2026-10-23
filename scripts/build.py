@@ -13,7 +13,7 @@ from fontTools import subset
 from fontTools.merge import Merger
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.scaleUpem import scale_upem
-from lib import BASE, LATIN, ROOT, lao_glyph_names, tt_glyph
+from lib import BASE, LATIN, ROOT, fetch_references, lao_glyph_names, tt_glyph
 
 UFO = ROOT / "sources/Kamphaeng-Regular.ufo"
 OUT = ROOT / "fonts"
@@ -91,6 +91,7 @@ def finish(tt: TTFont, ufo: ufoLib2.Font):
 
 
 def build():
+    fetch_references()
     OUT.mkdir(exist_ok=True)
     ufo = ufoLib2.Font.open(UFO)
     with tempfile.TemporaryDirectory() as d:

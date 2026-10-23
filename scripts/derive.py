@@ -15,7 +15,7 @@ import sys
 import ufoLib2
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
-from lib import BASE, BASE_VF, ROOT, contours_from_tt, lao_glyph_names, stylize
+from lib import BASE, BASE_VF, ROOT, contours_from_tt, fetch_references, lao_glyph_names, stylize
 
 UFO = ROOT / "sources/Kamphaeng-Regular.ufo"
 OVERRIDES = ROOT / "design/overrides.json"
@@ -23,6 +23,7 @@ DEFAULTS = {"eps": 16.0, "min_edge": 10.0, "gap": 22.0, "junctions": 2}
 
 
 def ensure_base():
+    fetch_references()
     if not BASE.exists():
         BASE.parent.mkdir(parents=True, exist_ok=True)
         instancer.instantiateVariableFont(TTFont(BASE_VF), {"wght": 900, "wdth": 100}).save(BASE)

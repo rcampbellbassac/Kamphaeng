@@ -1,0 +1,5 @@
+fonttools[ufo,woff]>=4.60
+ufoLib2>=0.19
+booleanOperations>=0.9
+uharfbuzz>=0.50
+pillow>=11
