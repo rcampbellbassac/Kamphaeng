@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni0EB4.narrow" format="2">
+  <outline>
+    <contour>
+      <point x="65.0" y="695.0" type="line"/>
+      <point x="123.0" y="637.0" type="line"/>
+      <point x="222.0" y="637.0" type="line"/>
+      <point x="222.0" y="688.0" type="line"/>
+      <point x="175.0" y="734.0" type="line"/>
+      <point x="175.0" y="771.0" type="line"/>
+      <point x="211.0" y="806.0" type="line"/>
+      <point x="288.0" y="806.0" type="line"/>
+      <point x="332.0" y="762.0" type="line"/>
+      <point x="332.0" y="702.0" type="line"/>
+      <point x="286.0" y="702.0" type="line"/>
+      <point x="286.0" y="629.0" type="line"/>
+      <point x="367.0" y="629.0" type="line"/>
+      <point x="447.0" y="709.0" type="line"/>
+      <point x="447.0" y="805.0" type="line"/>
+      <point x="370.0" y="882.0" type="line"/>
+      <point x="153.0" y="882.0" type="line"/>
+      <point x="65.0" y="794.0" type="line"/>
+    </contour>
+  </outline>
+</glyph>

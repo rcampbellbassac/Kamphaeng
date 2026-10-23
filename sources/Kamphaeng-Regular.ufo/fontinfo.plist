@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>ascender</key>
+    <integer>900</integer>
+    <key>capHeight</key>
+    <integer>648</integer>
+    <key>copyright</key>
+    <string>Copyright 2026 Robert Martin Campbell. Lao outlines derived from Noto Sans Lao (Copyright 2022 The Noto Project Authors); Latin from Black Ops One (Copyright 2022 The Black-Ops Project Authors).</string>
+    <key>descender</key>
+    <integer>-350</integer>
+    <key>familyName</key>
+    <string>Kamphaeng</string>
+    <key>openTypeNameDesigner</key>
+    <string>Robert Martin Campbell</string>
+    <key>openTypeNameLicense</key>
+    <string>This Font Software is licensed under the SIL Open Font License, Version 1.1.</string>
+    <key>openTypeNameLicenseURL</key>
+    <string>https://openfontlicense.org</string>
+    <key>styleName</key>
+    <string>Regular</string>
+    <key>unitsPerEm</key>
+    <integer>1000</integer>
+    <key>versionMajor</key>
+    <integer>0</integer>
+    <key>versionMinor</key>
+    <integer>100</integer>
+    <key>xHeight</key>
+    <integer>519</integer>
+  </dict>
+</plist>

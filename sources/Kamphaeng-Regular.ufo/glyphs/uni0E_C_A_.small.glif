@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni0ECA.small" format="2">
+  <outline>
+    <contour>
+      <point x="59.0" y="999.0" type="line"/>
+      <point x="114.0" y="945.0" type="line"/>
+      <point x="214.0" y="945.0" type="line"/>
+      <point x="214.0" y="1026.0" type="line"/>
+      <point x="165.0" y="1026.0" type="line"/>
+      <point x="165.0" y="1061.0" type="line"/>
+      <point x="247.0" y="1061.0" type="line"/>
+      <point x="266.0" y="1080.0" type="line"/>
+      <point x="303.0" y="1042.0" type="line"/>
+      <point x="266.0" y="1005.0" type="line"/>
+      <point x="266.0" y="942.0" type="line"/>
+      <point x="489.0" y="942.0" type="line"/>
+      <point x="489.0" y="1028.0" type="line"/>
+      <point x="400.0" y="1028.0" type="line"/>
+      <point x="400.0" y="1109.0" type="line"/>
+      <point x="343.0" y="1166.0" type="line"/>
+      <point x="277.0" y="1166.0" type="line"/>
+      <point x="230.0" y="1119.0" type="line"/>
+      <point x="184.0" y="1165.0" type="line"/>
+      <point x="119.0" y="1165.0" type="line"/>
+      <point x="59.0" y="1105.0" type="line"/>
+    </contour>
+  </outline>
+</glyph>
