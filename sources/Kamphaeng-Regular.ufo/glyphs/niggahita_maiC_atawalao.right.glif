@@ -2,39 +2,39 @@
 <glyph name="niggahita_maiCatawalao.right" format="2">
   <outline>
     <contour>
-      <point x="50.0" y="961.0" type="line"/>
-      <point x="126.0" y="961.0" type="line"/>
-      <point x="126.0" y="902.0" type="line"/>
-      <point x="253.0" y="902.0" type="line"/>
-      <point x="253.0" y="961.0" type="line"/>
-      <point x="329.0" y="961.0" type="line"/>
-      <point x="329.0" y="1048.0" type="line"/>
-      <point x="253.0" y="1048.0" type="line"/>
-      <point x="253.0" y="1107.0" type="line"/>
-      <point x="126.0" y="1107.0" type="line"/>
-      <point x="126.0" y="1048.0" type="line"/>
-      <point x="50.0" y="1048.0" type="line"/>
+      <point x="267.0" y="961" type="line"/>
+      <point x="343.0" y="961" type="line"/>
+      <point x="343.0" y="1048" type="line"/>
+      <point x="267.0" y="1048" type="line"/>
+      <point x="267.0" y="1107" type="line"/>
+      <point x="112.0" y="1107" type="line"/>
+      <point x="112.0" y="1048" type="line"/>
+      <point x="36.0" y="1048" type="line"/>
+      <point x="36.0" y="961" type="line"/>
+      <point x="112.0" y="961" type="line"/>
+      <point x="112.0" y="902" type="line"/>
+      <point x="267.0" y="902" type="line"/>
     </contour>
     <contour>
-      <point x="129" y="642" type="line"/>
-      <point x="204" y="642" type="line"/>
-      <point x="204" y="711" type="line"/>
       <point x="152" y="711" type="line"/>
       <point x="152" y="777" type="line"/>
       <point x="167.4" y="777" type="line"/>
       <point x="167.4" y="846" type="line"/>
-      <point x="73" y="846" type="line"/>
-      <point x="73" y="698" type="line"/>
+      <point x="59" y="846" type="line"/>
+      <point x="59" y="698" type="line"/>
+      <point x="115.2" y="642" type="line"/>
+      <point x="204" y="642" type="line"/>
+      <point x="204" y="711" type="line"/>
     </contour>
     <contour>
-      <point x="251" y="642" type="line"/>
-      <point x="313" y="703" type="line"/>
-      <point x="313" y="780" type="line"/>
-      <point x="247" y="846" type="line"/>
+      <point x="327" y="703" type="line"/>
+      <point x="327" y="780" type="line"/>
+      <point x="260.8" y="846" type="line"/>
       <point x="189.4" y="846" type="line"/>
       <point x="189.4" y="777" type="line"/>
       <point x="226" y="777" type="line"/>
       <point x="226" y="642" type="line"/>
+      <point x="264.8" y="642" type="line"/>
     </contour>
   </outline>
 </glyph>

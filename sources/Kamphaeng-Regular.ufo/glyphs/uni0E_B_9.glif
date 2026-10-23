@@ -3,20 +3,20 @@
   <unicode hex="0EB9"/>
   <outline>
     <contour>
-      <point x="57.0" y="-72.0" type="line"/>
-      <point x="57.0" y="-186.0" type="line"/>
-      <point x="129.0" y="-186.0" type="line"/>
-      <point x="129.0" y="-238.0" type="line"/>
-      <point x="194.0" y="-303.0" type="line"/>
-      <point x="377.0" y="-303.0" type="line"/>
-      <point x="461.0" y="-220.0" type="line"/>
-      <point x="461.0" y="-68.0" type="line"/>
-      <point x="321.0" y="-68.0" type="line"/>
-      <point x="321.0" y="-190.0" type="line"/>
-      <point x="291.0" y="-220.0" type="line"/>
-      <point x="260.0" y="-188.0" type="line"/>
-      <point x="260.0" y="-113.0" type="line"/>
-      <point x="218.0" y="-72.0" type="line"/>
+      <point x="475.0" y="-220" type="line"/>
+      <point x="475.0" y="-68" type="line"/>
+      <point x="307.0" y="-68" type="line"/>
+      <point x="307.0" y="-190" type="line"/>
+      <point x="291.2" y="-206" type="line"/>
+      <point x="274.0" y="-188" type="line"/>
+      <point x="274.0" y="-113" type="line"/>
+      <point x="231.8" y="-72" type="line"/>
+      <point x="43.0" y="-72" type="line"/>
+      <point x="43.0" y="-186" type="line"/>
+      <point x="115.0" y="-186" type="line"/>
+      <point x="115.0" y="-238" type="line"/>
+      <point x="180.2" y="-303" type="line"/>
+      <point x="390.8" y="-303" type="line"/>
     </contour>
   </outline>
 </glyph>

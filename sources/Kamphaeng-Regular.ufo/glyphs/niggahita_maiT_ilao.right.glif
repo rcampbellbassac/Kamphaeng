@@ -2,51 +2,51 @@
 <glyph name="niggahita_maiTilao.right" format="2">
   <outline>
     <contour>
-      <point x="266" y="1040" type="line"/>
-      <point x="303" y="1002" type="line"/>
-      <point x="266" y="965" type="line"/>
-      <point x="266" y="902" type="line"/>
-      <point x="489" y="902" type="line"/>
-      <point x="489" y="988" type="line"/>
-      <point x="400" y="988" type="line"/>
-      <point x="400" y="1069" type="line"/>
-      <point x="343" y="1126" type="line"/>
-      <point x="277" y="1126" type="line"/>
-      <point x="230" y="1079" type="line"/>
-      <point x="187" y="1122" type="line"/>
-      <point x="187" y="1021" type="line"/>
-      <point x="247" y="1021" type="line"/>
+      <point x="503" y="988" type="line"/>
+      <point x="414" y="988" type="line"/>
+      <point x="414" y="1069" type="line"/>
+      <point x="356.8" y="1126" type="line"/>
+      <point x="263.2" y="1126" type="line"/>
+      <point x="230" y="1093" type="line"/>
+      <point x="201" y="1121.82" type="line"/>
+      <point x="201" y="1021" type="line"/>
+      <point x="260.8" y="1021" type="line"/>
+      <point x="265.8" y="1026" type="line"/>
+      <point x="289" y="1002" type="line"/>
+      <point x="252" y="965" type="line"/>
+      <point x="252" y="902" type="line"/>
+      <point x="503" y="902" type="line"/>
     </contour>
     <contour>
-      <point x="59" y="959" type="line"/>
-      <point x="114" y="905" type="line"/>
-      <point x="214" y="905" type="line"/>
-      <point x="214" y="986" type="line"/>
-      <point x="165" y="986" type="line"/>
-      <point x="165" y="1125" type="line"/>
-      <point x="119" y="1125" type="line"/>
-      <point x="59" y="1065" type="line"/>
+      <point x="105.2" y="1125" type="line"/>
+      <point x="45" y="1065" type="line"/>
+      <point x="45" y="959" type="line"/>
+      <point x="100.2" y="905" type="line"/>
+      <point x="228" y="905" type="line"/>
+      <point x="228" y="986" type="line"/>
+      <point x="179" y="986" type="line"/>
+      <point x="179" y="1125" type="line"/>
     </contour>
     <contour>
-      <point x="180" y="642" type="line"/>
-      <point x="255" y="642" type="line"/>
-      <point x="255" y="711" type="line"/>
       <point x="203" y="711" type="line"/>
       <point x="203" y="777" type="line"/>
       <point x="218.4" y="777" type="line"/>
       <point x="218.4" y="846" type="line"/>
-      <point x="124" y="846" type="line"/>
-      <point x="124" y="698" type="line"/>
+      <point x="110" y="846" type="line"/>
+      <point x="110" y="698" type="line"/>
+      <point x="166.2" y="642" type="line"/>
+      <point x="255" y="642" type="line"/>
+      <point x="255" y="711" type="line"/>
     </contour>
     <contour>
-      <point x="302" y="642" type="line"/>
-      <point x="364" y="703" type="line"/>
-      <point x="364" y="780" type="line"/>
-      <point x="298" y="846" type="line"/>
+      <point x="378" y="703" type="line"/>
+      <point x="378" y="780" type="line"/>
+      <point x="311.8" y="846" type="line"/>
       <point x="240.4" y="846" type="line"/>
       <point x="240.4" y="777" type="line"/>
       <point x="277" y="777" type="line"/>
       <point x="277" y="642" type="line"/>
+      <point x="315.8" y="642" type="line"/>
     </contour>
   </outline>
 </glyph>

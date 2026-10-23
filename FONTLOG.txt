@@ -9,4 +9,5 @@ Sources and acknowledgements
   (James Grieshaber, Eben Sorkin), SIL OFL 1.1, no Reserved Font Name.
 
 ChangeLog
+2026-10-22 (0.110) Heavier Lao: stems thickened 14 units per side to match the Black Ops One Latin (216 units); enclosed counters keep their size; mark anchors moved with the outlines.
 2026-10-22 (0.100) First draft: octilinear Lao + automatic stencil gaps, merged with Black Ops One Latin.

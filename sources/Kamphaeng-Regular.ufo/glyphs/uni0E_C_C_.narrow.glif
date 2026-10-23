@@ -2,13 +2,13 @@
 <glyph name="uni0ECC.narrow" format="2">
   <outline>
     <contour>
-      <point x="310.0" y="832.0" type="line"/>
-      <point x="127.0" y="832.0" type="line"/>
-      <point x="61.0" y="767.0" type="line"/>
-      <point x="61.0" y="643.0" type="line"/>
-      <point x="221.0" y="643.0" type="line"/>
-      <point x="221.0" y="719.0" type="line"/>
-      <point x="310.0" y="719.0" type="line"/>
+      <point x="235.0" y="719" type="line"/>
+      <point x="324.0" y="719" type="line"/>
+      <point x="324.0" y="832" type="line"/>
+      <point x="113.2" y="832" type="line"/>
+      <point x="47.0" y="767" type="line"/>
+      <point x="47.0" y="643" type="line"/>
+      <point x="235.0" y="643" type="line"/>
     </contour>
   </outline>
 </glyph>

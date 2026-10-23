@@ -1,34 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="uni0EA3" format="2">
-  <advance width="580"/>
+  <advance width="608.0"/>
   <unicode hex="0EA3"/>
   <outline>
     <contour>
-      <point x="45" y="99" type="line"/>
-      <point x="146" y="-2" type="line"/>
-      <point x="425" y="-2" type="line"/>
-      <point x="538" y="111" type="line"/>
-      <point x="538" y="251" type="line"/>
-      <point x="423" y="367" type="line"/>
-      <point x="351" y="367" type="line"/>
-      <point x="351" y="545" type="line"/>
-      <point x="114" y="545" type="line"/>
+      <point x="566" y="111" type="line"/>
+      <point x="566" y="251" type="line"/>
+      <point x="450.8" y="367" type="line"/>
+      <point x="379" y="367" type="line"/>
+      <point x="379" y="545" type="line"/>
+      <point x="114.2" y="545" type="line"/>
       <point x="42" y="473" type="line"/>
       <point x="42" y="274" type="line"/>
-      <point x="276" y="274" type="line"/>
+      <point x="276.2" y="274" type="line"/>
       <point x="372" y="178" type="line"/>
-      <point x="331" y="137" type="line"/>
-      <point x="244" y="137" type="line"/>
-      <point x="224" y="158" type="line"/>
-      <point x="224" y="234" type="line"/>
-      <point x="71" y="234" type="line"/>
+      <point x="331.2" y="137" type="line"/>
+      <point x="271.8" y="137" type="line"/>
+      <point x="252" y="158" type="line"/>
+      <point x="252" y="234" type="line"/>
+      <point x="71.2" y="234" type="line"/>
       <point x="45" y="209" type="line"/>
+      <point x="45" y="99" type="line"/>
+      <point x="146.2" y="-2" type="line"/>
+      <point x="452.8" y="-2" type="line"/>
     </contour>
     <contour>
-      <point x="538" y="405" type="line"/>
-      <point x="538" y="545" type="line"/>
-      <point x="373" y="545" type="line"/>
-      <point x="373" y="405" type="line"/>
+      <point x="566" y="405" type="line"/>
+      <point x="566" y="545" type="line"/>
+      <point x="401" y="545" type="line"/>
+      <point x="401" y="405" type="line"/>
     </contour>
   </outline>
 </glyph>

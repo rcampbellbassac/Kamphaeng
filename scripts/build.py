@@ -49,10 +49,48 @@ def lao_part(tmp: Path) -> Path:
         glyf[name] = tt_glyph(contours)
         glyf[name].recalcBounds(glyf)
         hmtx[name] = (int(round(g.width)), getattr(glyf[name], "xMin", 0) if contours else 0)
+    shift_anchors(tt, {g: dx for g, dx in ufo.lib.get("kamphaeng.xshift", {}).items() if dx})
     _subset(tt, LAO_UNICODES)
     p = tmp / "lao.ttf"
     tt.save(p)
     return p
+
+
+def shift_anchors(tt: TTFont, shift: dict):
+    """Move GPOS attachment anchors of glyphs whose outlines derive.py shifted right."""
+    if not shift or "GPOS" not in tt:
+        return
+    def mv(anchor, glyph):
+        if anchor is not None and glyph in shift:
+            anchor.XCoordinate = int(round(anchor.XCoordinate + shift[glyph]))
+    def mark_array(cov, arr):
+        for g, rec in zip(cov.glyphs, arr.MarkRecord):
+            mv(rec.MarkAnchor, g)
+    for lookup in tt["GPOS"].table.LookupList.Lookup:
+        for st in lookup.SubTable:
+            t = lookup.LookupType
+            if t == 9:
+                t, st = st.ExtensionLookupType, st.ExtSubTable
+            if t == 4:  # mark-to-base
+                mark_array(st.MarkCoverage, st.MarkArray)
+                for g, rec in zip(st.BaseCoverage.glyphs, st.BaseArray.BaseRecord):
+                    for a in rec.BaseAnchor:
+                        mv(a, g)
+            elif t == 5:  # mark-to-ligature
+                mark_array(st.MarkCoverage, st.MarkArray)
+                for g, att in zip(st.LigatureCoverage.glyphs, st.LigatureArray.LigatureAttach):
+                    for comp in att.ComponentRecord:
+                        for a in comp.LigatureAnchor:
+                            mv(a, g)
+            elif t == 6:  # mark-to-mark
+                mark_array(st.Mark1Coverage, st.Mark1Array)
+                for g, rec in zip(st.Mark2Coverage.glyphs, st.Mark2Array.Mark2Record):
+                    for a in rec.Mark2Anchor:
+                        mv(a, g)
+            elif t == 3:  # cursive
+                for g, rec in zip(st.Coverage.glyphs, st.EntryExitRecord):
+                    mv(rec.EntryAnchor, g)
+                    mv(rec.ExitAnchor, g)
 
 
 def latin_part(tmp: Path) -> Path:

@@ -2,17 +2,17 @@
 <glyph name="uni0EC9.narrow" format="2">
   <outline>
     <contour>
-      <point x="60.0" y="865.0" type="line"/>
-      <point x="60.0" y="775.0" type="line"/>
-      <point x="106.0" y="775.0" type="line"/>
-      <point x="126.0" y="754.0" type="line"/>
-      <point x="60.0" y="689.0" type="line"/>
-      <point x="60.0" y="637.0" type="line"/>
-      <point x="358.0" y="637.0" type="line"/>
-      <point x="358.0" y="752.0" type="line"/>
-      <point x="258.0" y="752.0" type="line"/>
-      <point x="258.0" y="824.0" type="line"/>
-      <point x="217.0" y="865.0" type="line"/>
+      <point x="372.0" y="752" type="line"/>
+      <point x="272.0" y="752" type="line"/>
+      <point x="272.0" y="824" type="line"/>
+      <point x="230.8" y="865" type="line"/>
+      <point x="46.0" y="865" type="line"/>
+      <point x="46.0" y="775" type="line"/>
+      <point x="92.2" y="775" type="line"/>
+      <point x="112.0" y="754" type="line"/>
+      <point x="46.0" y="689" type="line"/>
+      <point x="46.0" y="637" type="line"/>
+      <point x="372.0" y="637" type="line"/>
     </contour>
   </outline>
 </glyph>

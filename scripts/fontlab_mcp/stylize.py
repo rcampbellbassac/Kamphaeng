@@ -433,3 +433,67 @@ def _topology(contours):
     outer = 1 if areas[max(range(len(areas)), key=lambda i: abs(areas[i]))] > 0 else -1
     pieces = sum(1 for a in areas if (1 if a > 0 else -1) == outer)
     return (pieces, len(areas) - pieces)
+
+
+# ---------------------------------------------------------------- weight
+
+def embolden_x(contours, d: float, stretch: float = 64.0, precision: int = 16, keep_counters: bool = True):
+    """Thicken stems horizontally by d per side, leaving horizontal bars' thickness unchanged.
+
+    Anisotropic offset: stretch y by `stretch`, mitre-offset by d, squash back. Vertical edges move
+    d, horizontal edges move only d/stretch, 45-degree edges stay at 45 degrees. Counters narrow by 2d
+    (tiny counters can close: check proofs). Returns UFO-style line contours.
+    keep_counters: grow only the outer contours and keep enclosed counters at their original size,
+    so small Lao loops (in letters such as ຄ ຍ ອ) stay open.
+    """
+    import pyclipper
+    if not contours or d == 0:
+        return contours
+    holes = []
+    if keep_counters:
+        polys = [_poly(c) for c in contours]
+        areas = [_area(q) for q in polys]
+        outer = 1 if areas[max(range(len(areas)), key=lambda i: abs(areas[i]))] > 0 else -1
+        holes = [c for c, a in zip(contours, areas) if (1 if a > 0 else -1) != outer]
+        contours = [c for c, a in zip(contours, areas) if (1 if a > 0 else -1) == outer]
+    sx, sy = precision, precision * stretch
+    paths = [[(int(round(p["x"] * sx)), int(round(p["y"] * sy))) for p in c if p["type"] != "offcurve"]
+             for c in contours]
+    co = pyclipper.PyclipperOffset(miter_limit=8.0)
+    co.AddPaths(paths, pyclipper.JT_MITER, pyclipper.ET_CLOSEDPOLYGON)
+    out = co.Execute(d * sx)
+    res = []
+    for path in out:
+        pts = []
+        for x, y in path:
+            p = (round(x / sx, 1), round(y / sy))
+            if not pts or pts[-1] != p:
+                pts.append(p)
+        if len(pts) > 2 and pts[0] == pts[-1]:
+            pts.pop()
+        # drop collinear vertices introduced by rounding
+        clean = []
+        for i, p in enumerate(pts):
+            a, b = pts[i - 1], pts[(i + 1) % len(pts)]
+            if (p[0] - a[0]) * (b[1] - p[1]) - (p[1] - a[1]) * (b[0] - p[0]) != 0:
+                clean.append(p)
+        if len(clean) > 2:
+            res.append([{"x": x, "y": y, "type": "line"} for x, y in clean])
+    grown = clean_overlaps(res)
+    if not holes:
+        return grown
+    # cut the original counters back out (as filled shapes, whatever their stored direction)
+    filled = [c if _area(_poly(c)) * _area(_poly(grown[0])) > 0 else c[::-1] for c in holes]
+    return clean_overlaps(stencil_cut_shapes(grown, filled))
+
+
+def stencil_cut_shapes(contours, shapes):
+    """Subtract arbitrary closed shapes from contours."""
+    from booleanOperations import BooleanOperationManager
+    pen = _Collect()
+    BooleanOperationManager().difference(_PathList(contours), _PathList(shapes), pen)
+    return pen.contours
+
+
+def translate(contours, dx: float = 0, dy: float = 0):
+    return [[{**p, "x": p["x"] + dx, "y": p["y"] + dy} for p in c] for c in contours]

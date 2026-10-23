@@ -6,7 +6,9 @@
 Per-glyph design decisions live in design/overrides.json:
   {"uni0E94": {"cuts": [{"x0":..,"y0":..,"x1":..,"y1":..}], "auto": false, "eps": 12}}
   cuts: extra stencil gaps; auto: false disables the automatic gaps; eps: simplification tolerance;
-  junctions: max automatic junction gaps (0 = none).
+  junctions: max automatic junction gaps (0 = none); bold: extra stem weight per side (units).
+Spacing glyphs widen by 2*bold and shift right by bold; the shift is stored in the UFO lib key
+"kamphaeng.xshift" so build.py moves the GPOS mark anchors by the same amount.
 Glyphs hand-edited in FontLab are listed in the UFO lib key "kamphaeng.locked" and never regenerated.
 """
 import json
@@ -19,7 +21,7 @@ from lib import BASE, BASE_VF, ROOT, contours_from_tt, fetch_references, lao_gly
 
 UFO = ROOT / "sources/Kamphaeng-Regular.ufo"
 OVERRIDES = ROOT / "design/overrides.json"
-DEFAULTS = {"eps": 16.0, "min_edge": 10.0, "gap": 22.0, "junctions": 2}
+DEFAULTS = {"eps": 16.0, "min_edge": 10.0, "gap": 22.0, "junctions": 2, "bold": 14.0}
 
 
 def ensure_base():
@@ -62,6 +64,14 @@ def derive(only=None, force=False):
         o = {**DEFAULTS, **overrides.get(name, {})}
         src = contours_from_tt(tt, name)
         outl = stylize.octilinearize(src, eps=o["eps"], min_edge=o["min_edge"]) if src else []
+        width = tt["hmtx"][name][0]
+        shift = 0.0
+        if outl and o["bold"]:
+            outl = stylize.embolden_x(outl, o["bold"])
+            if width > 0:  # spacing glyph: keep sidebearings, widen the advance
+                shift = o["bold"]
+                outl = stylize.translate(outl, shift)
+                width += 2 * o["bold"]
         cuts = list(o.get("cuts", []))
         if outl and o.get("auto", True):
             cuts = stylize.auto_stencil_cuts(outl, gap=o["gap"]) + cuts
@@ -73,7 +83,8 @@ def derive(only=None, force=False):
             report["cuts"][name] = len(cuts)
         g = ufo.get(name) or ufo.newGlyph(name)
         g.clearContours()
-        g.width = tt["hmtx"][name][0]
+        g.width = width
+        ufo.lib.setdefault("kamphaeng.xshift", {})[name] = shift
         g.unicodes = [cmap[name]] if name in cmap else []
         pen = g.getPointPen()
         for c in outl:

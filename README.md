@@ -1,7 +1,7 @@
 # Kamphaeng ກຳແພງ
 
 **A heavy stencil font for Lao headlines, posters and signs.** Free and open source under the
-[SIL Open Font License 1.1](OFL.txt). **Status: beta (version 0.100).**
+[SIL Open Font License 1.1](OFL.txt). **Status: beta (version 0.110).**
 
 [ພາສາລາວ](#ພາສາລາວ) · [Try it online](https://rcampbellbassac.github.io/Kamphaeng/) ·
 [Download](https://github.com/rcampbellbassac/Kamphaeng/releases/latest/download/Kamphaeng.zip)
@@ -74,7 +74,7 @@ to use, share, change and sell with other software, including for commercial wor
 ## ພາສາລາວ
 
 **ກຳແພງ (Kamphaeng)** ເປັນຟອນ stencil ແບບໜາ ສຳລັບຫົວຂໍ້, ໂປສເຕີ ແລະ ປ້າຍພາສາລາວ.
-ໃຊ້ໄດ້ຟຣີ ພາຍໃຕ້ SIL Open Font License 1.1. **ສະຖານະ: ເບຕ້າ (ເວີຊັນ 0.100).**
+ໃຊ້ໄດ້ຟຣີ ພາຍໃຕ້ SIL Open Font License 1.1. **ສະຖານະ: ເບຕ້າ (ເວີຊັນ 0.110).**
 
 [ລອງໃຊ້ອອນລາຍ](https://rcampbellbassac.github.io/Kamphaeng/?lang=lo) ·
 [ດາວໂຫລດຟອນ](https://github.com/rcampbellbassac/Kamphaeng/releases/latest/download/Kamphaeng.zip)

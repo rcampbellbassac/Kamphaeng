@@ -2,19 +2,19 @@
 <glyph name="uni0ECE.narrow" format="2">
   <outline>
     <contour>
-      <point x="24" y="637" type="line"/>
-      <point x="138" y="637" type="line"/>
-      <point x="184.77" y="683.23" type="line"/>
-      <point x="228" y="640" type="line"/>
-      <point x="268" y="640" type="line"/>
-      <point x="311.97" y="683.44" type="line"/>
-      <point x="366" y="630" type="line"/>
-      <point x="472" y="630" type="line"/>
-      <point x="330" y="773" type="line"/>
-      <point x="296" y="773" type="line"/>
-      <point x="248.56" y="725" type="line"/>
-      <point x="200" y="773" type="line"/>
-      <point x="160" y="773" type="line"/>
+      <point x="343.8" y="773" type="line"/>
+      <point x="282.2" y="773" type="line"/>
+      <point x="248.4" y="739" type="line"/>
+      <point x="213.8" y="773" type="line"/>
+      <point x="146.2" y="773" type="line"/>
+      <point x="9.8" y="637" type="line"/>
+      <point x="151.8" y="637" type="line"/>
+      <point x="184.7" y="669" type="line"/>
+      <point x="214.2" y="640" type="line"/>
+      <point x="281.8" y="640" type="line"/>
+      <point x="312.0" y="670" type="line"/>
+      <point x="352.2" y="630" type="line"/>
+      <point x="486.2" y="630" type="line"/>
     </contour>
   </outline>
 </glyph>
