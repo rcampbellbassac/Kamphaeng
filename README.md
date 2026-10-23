@@ -1,7 +1,7 @@
 # Kamphaeng ກຳແພງ
 
-**A heavy stencil font for Lao headlines, posters and signs.** Free and open source under the
-[SIL Open Font License 1.1](OFL.txt). **Status: beta (version 0.110).**
+**A heavy stencil font for Lao, Thai and Khmer headlines, posters and signs.** Free and open source under the
+[SIL Open Font License 1.1](OFL.txt). **Status: beta (version 0.200).**
 
 [ພາສາລາວ](#ພາສາລາວ) · [Try it online](https://rcampbellbassac.github.io/Kamphaeng/) ·
 [Download](https://github.com/rcampbellbassac/Kamphaeng/releases/latest/download/Kamphaeng.zip)
@@ -24,6 +24,10 @@ from Black Ops One, so Lao and English mixed in one line look like one family.
 
 > **Beta.** Letter shapes, spacing and stencil gaps may still change before 1.0.
 > If a letter looks wrong, please [open an issue](https://github.com/rcampbellbassac/Kamphaeng/issues).
+
+## Thai and Khmer (new in 0.200)
+
+Thai and Khmer letters get the same treatment as the Lao: Noto Sans Thai and Noto Sans Khmer at Black weight, rebuilt from 0/45/90-degree edges, stems thickened to the Black Ops One weight, and stencil gaps. Noto's OpenType layout is kept, so Thai tone marks stack and Khmer subscripts (COENG) work. Design sources: `sources/Kamphaeng-Thai.ufo`, `sources/Kamphaeng-Khmer.ufo`; regenerate with `python scripts/derive.py --script=thai` (or `khmer`).
 
 ## Install
 

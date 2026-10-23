@@ -2,6 +2,7 @@
 
   python derive.py                 regenerate every glyph that is not locked
   python derive.py uni0E81 ...     regenerate only these (still skips locked ones unless --force)
+  python derive.py --script=thai   Thai (sources/Kamphaeng-Thai.ufo); --script=khmer for Khmer
 
 Per-glyph design decisions live in design/overrides.json:
   {"uni0E94": {"cuts": [{"x0":..,"y0":..,"x1":..,"y1":..}], "auto": false, "eps": 12}}
@@ -17,7 +18,7 @@ import sys
 import ufoLib2
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
-from lib import BASE, BASE_VF, ROOT, contours_from_tt, fetch_references, lao_glyph_names, stylize
+from lib import BASE, BASE_VF, ROOT, SCRIPTS, contours_from_tt, ensure_script_base, fetch_references, lao_glyph_names, script_glyph_names, stylize
 
 UFO = ROOT / "sources/Kamphaeng-Regular.ufo"
 OVERRIDES = ROOT / "design/overrides.json"
@@ -47,15 +48,17 @@ def new_ufo():
     return f
 
 
-def derive(only=None, force=False):
+def derive(only=None, force=False, script="lao"):
     ensure_base()
-    tt = TTFont(BASE)
+    base = ensure_script_base(script)
+    UFO = SCRIPTS[script]["ufo"]
+    tt = TTFont(base)
     cmap = {g: cp for cp, g in tt.getBestCmap().items()}
     overrides = json.loads(OVERRIDES.read_text()) if OVERRIDES.exists() else {}
     ufo = ufoLib2.Font.open(UFO) if UFO.exists() else new_ufo()
     locked = set(ufo.lib.get("kamphaeng.locked", []))
     report = {"derived": 0, "skipped_locked": [], "cuts": {}}
-    for name in lao_glyph_names(tt):
+    for name in script_glyph_names(tt, script):
         if only and name not in only:
             continue
         if name in locked and not force:
@@ -101,7 +104,8 @@ def derive(only=None, force=False):
 
 
 if __name__ == "__main__":
+    script = next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--script=")), "lao")
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    r = derive(set(args) or None, force="--force" in sys.argv)
+    r = derive(set(args) or None, force="--force" in sys.argv, script=script)
     print(json.dumps({"derived": r["derived"], "stencilled_glyphs": len(r["cuts"]),
                       "skipped_locked": r["skipped_locked"]}, ensure_ascii=False))

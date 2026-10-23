@@ -63,3 +63,48 @@ def tt_glyph(contours, glyphset=None):
                 qpen.lineTo((p["x"], p["y"]))
         qpen.closePath()
     return pen.glyph()
+
+
+# ---------------------------------------------------------------- Thai and Khmer (added 0.200)
+
+SCRIPTS = {
+    "lao": {"vf": BASE_VF, "base": BASE, "ufo": ROOT / "sources/Kamphaeng-Regular.ufo",
+            "unicodes": list(range(0x0E80, 0x0F00)) + [0x25CC, 0x200B, 0x200C, 0x200D]},
+    "thai": {"vf": REFS / "google-base/notosansthai/NotoSansThai[wdth,wght].ttf", "base": ROOT / "base/NotoSansThai-Black-sub.ttf",
+             "ufo": ROOT / "sources/Kamphaeng-Thai.ufo", "unicodes": list(range(0x0E01, 0x0E5C)) + [0x25CC, 0x200B, 0x200C, 0x200D]},
+    "khmer": {"vf": REFS / "google-base/notosanskhmer/NotoSansKhmer[wdth,wght].ttf", "base": ROOT / "base/NotoSansKhmer-Black-sub.ttf",
+              "ufo": ROOT / "sources/Kamphaeng-Khmer.ufo",
+              "unicodes": list(range(0x1780, 0x1800)) + list(range(0x19E0, 0x1A00)) + [0x25CC, 0x200B, 0x200C, 0x200D]},
+}
+
+
+def subset_layout(font: TTFont, unicodes) -> TTFont:
+    from fontTools import subset
+    o = subset.Options()
+    o.layout_features = ["*"]; o.name_IDs = ["*"]; o.glyph_names = True; o.notdef_outline = True; o.hinting = False
+    o.drop_tables += ["DSIG", "gasp", "STAT", "fvar", "gvar", "avar", "HVAR", "MVAR", "vhea", "vmtx"]
+    s = subset.Subsetter(o); s.populate(unicodes=unicodes); s.subset(font)
+    return font
+
+
+def ensure_script_base(script: str) -> Path:
+    """Black (wght 900) instance of the script's Noto font, subset to that script with its layout tables."""
+    from fontTools.varLib import instancer
+    cfg = SCRIPTS[script]
+    if script == "lao":
+        return cfg["base"]
+    if not cfg["vf"].exists():
+        fam = {"thai": "Noto Sans Thai", "khmer": "Noto Sans Khmer"}[script]
+        offline.google_fonts_fetch(fam, cfg["vf"].parent)
+    if not cfg["base"].exists():
+        cfg["base"].parent.mkdir(parents=True, exist_ok=True)
+        tt = instancer.instantiateVariableFont(TTFont(cfg["vf"]), {"wght": 900, "wdth": 100})
+        subset_layout(tt, cfg["unicodes"]).save(cfg["base"])
+    return cfg["base"]
+
+
+def script_glyph_names(tt: TTFont, script: str) -> list[str]:
+    if script == "lao":
+        return lao_glyph_names(tt)
+    skip = {".notdef", "space", "uni00A0", "NULL", "CR", "uni200B", "uni200C", "uni200D"}
+    return [g for g in tt.getGlyphOrder() if g not in skip]

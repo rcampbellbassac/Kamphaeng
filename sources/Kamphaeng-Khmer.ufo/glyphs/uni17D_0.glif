@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni17D0" format="2">
+  <unicode hex="17D0"/>
+  <outline>
+    <contour>
+      <point x="-71.0" y="822" type="line"/>
+      <point x="-71.0" y="921" type="line"/>
+      <point x="-243.0" y="921" type="line"/>
+      <point x="-243.0" y="856" type="line"/>
+      <point x="-295.8" y="804" type="line"/>
+      <point x="-310.0" y="804" type="line"/>
+      <point x="-310.0" y="818" type="line"/>
+      <point x="-287.0" y="818" type="line"/>
+      <point x="-287.0" y="912" type="line"/>
+      <point x="-433.8" y="912" type="line"/>
+      <point x="-493.0" y="854" type="line"/>
+      <point x="-493.0" y="792" type="line"/>
+      <point x="-412.8" y="713" type="line"/>
+      <point x="-180.2" y="713" type="line"/>
+    </contour>
+  </outline>
+</glyph>

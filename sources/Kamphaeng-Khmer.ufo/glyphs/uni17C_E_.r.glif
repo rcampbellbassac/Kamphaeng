@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni17CE.r" format="2">
+  <outline>
+    <contour>
+      <point x="-12.0" y="758" type="line"/>
+      <point x="56.0" y="758" type="line"/>
+      <point x="56.0" y="860" type="line"/>
+      <point x="-12.0" y="860" type="line"/>
+      <point x="-12.0" y="934" type="line"/>
+      <point x="-142.0" y="934" type="line"/>
+      <point x="-142.0" y="860" type="line"/>
+      <point x="-210.0" y="860" type="line"/>
+      <point x="-210.0" y="758" type="line"/>
+      <point x="-142.0" y="758" type="line"/>
+      <point x="-142.0" y="684" type="line"/>
+      <point x="-12.0" y="684" type="line"/>
+    </contour>
+  </outline>
+</glyph>

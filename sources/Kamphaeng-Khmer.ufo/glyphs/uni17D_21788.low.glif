@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni17D21788.low" format="2">
+  <advance width="350.0"/>
+  <outline>
+    <contour>
+      <point x="-270.0" y="-432" type="line"/>
+      <point x="-211.8" y="-490" type="line"/>
+      <point x="179.8" y="-490" type="line"/>
+      <point x="261.0" y="-409" type="line"/>
+      <point x="261.0" y="354" type="line"/>
+      <point x="262.0" y="354" type="line"/>
+      <point x="262.0" y="411" type="line"/>
+      <point x="199.2" y="474" type="line"/>
+      <point x="270.0" y="474" type="line"/>
+      <point x="270.0" y="586" type="line"/>
+      <point x="90.2" y="586" type="line"/>
+      <point x="-2.0" y="493" type="line"/>
+      <point x="53.0" y="438" type="line"/>
+      <point x="53.0" y="380" type="line"/>
+      <point x="51.0" y="380" type="line"/>
+      <point x="51.0" y="-314" type="line"/>
+      <point x="-117.0" y="-314" type="line"/>
+      <point x="-117.0" y="-373" type="line"/>
+      <point x="-181.2" y="-309" type="line"/>
+      <point x="-382.8" y="-309" type="line"/>
+      <point x="-451.0" y="-378" type="line"/>
+      <point x="-451.0" y="-508" type="line"/>
+      <point x="-270.0" y="-508" type="line"/>
+    </contour>
+  </outline>
+</glyph>

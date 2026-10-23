@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni17C5.right" format="2">
+  <advance width="346.0"/>
+  <outline>
+    <contour>
+      <point x="228.0" y="788" type="line"/>
+      <point x="170.8" y="845" type="line"/>
+      <point x="-33.0" y="845" type="line"/>
+      <point x="-33.0" y="735" type="line"/>
+      <point x="18.0" y="735" type="line"/>
+      <point x="18.0" y="604" type="line"/>
+      <point x="228.0" y="604" type="line"/>
+    </contour>
+    <contour>
+      <point x="253.0" y="503" type="line"/>
+      <point x="171.8" y="584" type="line"/>
+      <point x="-118.0" y="584" type="line"/>
+      <point x="-118.0" y="473" type="line"/>
+      <point x="18.2" y="473" type="line"/>
+      <point x="51.0" y="440" type="line"/>
+      <point x="51.0" y="0" type="line"/>
+      <point x="253.0" y="0" type="line"/>
+    </contour>
+  </outline>
+</glyph>

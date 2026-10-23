@@ -3,11 +3,12 @@ FONTLOG for Kamphaeng
 Kamphaeng is a Lao + Latin stencil display font. Licensed under the SIL Open Font License 1.1.
 
 Sources and acknowledgements
-- Lao outlines derived from Noto Sans Lao, Copyright 2022 The Noto Project Authors
+- Lao, Thai and Khmer outlines derived from Noto Sans Lao / Thai / Khmer, Copyright 2022 The Noto Project Authors
   (https://github.com/notofonts/lao), SIL OFL 1.1, no Reserved Font Name.
 - Latin glyphs from Black Ops One, Copyright 2022 The Black-Ops Project Authors
   (James Grieshaber, Eben Sorkin), SIL OFL 1.1, no Reserved Font Name.
 
 ChangeLog
+2026-10-23 (0.200) Thai and Khmer added (from Noto Sans Thai / Khmer Black, same octilinear + stencil treatment); demo page in English, Lao, Thai and Khmer.
 2026-10-22 (0.110) Heavier Lao: stems thickened 14 units per side to match the Black Ops One Latin (216 units); enclosed counters keep their size; mark anchors moved with the outlines.
 2026-10-22 (0.100) First draft: octilinear Lao + automatic stencil gaps, merged with Black Ops One Latin.

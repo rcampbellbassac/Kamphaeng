@@ -11,7 +11,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;600&family=Noto+Sans+Thai:wght@400;600&family=Noto+Sans+Khmer:wght@400;600&display=swap" rel="stylesheet">
 <link rel="preload" href="fonts/Kamphaeng-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face {
@@ -53,12 +53,18 @@ a:hover { color: var(--ink); }
 }
 .wordmark { font-family: var(--display); font-size: 1.6rem; line-height: 1; text-decoration: none; color: var(--ink); }
 .bar nav { display: flex; gap: 10px; align-items: center; }
+.langs { display: flex; gap: 6px; flex-wrap: wrap; }
 .lang {
   font: 600 0.95rem var(--body); cursor: pointer;
   background: transparent; color: var(--ink);
-  border: 2px solid var(--ink); padding: 6px 14px;
+  border: 2px solid var(--ink); padding: 6px 12px;
 }
-.lang:hover { background: var(--ink); color: var(--concrete); }
+.lang:hover, .lang[aria-pressed=true] { background: var(--ink); color: var(--concrete); }
+html[lang=th] body { font-family: "Noto Sans Thai", "Noto Sans Lao", sans-serif; }
+html[lang=km] body { font-family: "Noto Sans Khmer", "Noto Sans Lao", sans-serif; line-height: 1.8; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 1rem; }
+.tab { font: 600 .95rem var(--body); cursor: pointer; background: transparent; color: var(--ink); border: 2px solid var(--ink); padding: 4px 14px; }
+.tab[aria-selected=true] { background: var(--ink); color: var(--concrete); }
 .bar .gh { font-weight: 600; }
 
 /* ---------------------------------------------------------------- hero: the tester */
@@ -167,7 +173,7 @@ footer p { font-size: .95rem; }
   <a class="wordmark" href="#top" aria-label="Kamphaeng">ກຳແພງ</a>
   <nav>
     <a class="gh" href="https://github.com/rcampbellbassac/Kamphaeng">GitHub</a>
-    <button class="lang" id="lang" type="button" aria-label="Switch language">ລາວ</button>
+    <div class="langs" role="group" aria-label="Language"><button class="lang" type="button" data-lang="en">English</button><button class="lang" type="button" data-lang="lo" style="font-family:'Noto Sans Lao'">ລາວ</button><button class="lang" type="button" data-lang="th" style="font-family:'Noto Sans Thai'">ไทย</button><button class="lang" type="button" data-lang="km" style="font-family:'Noto Sans Khmer'">ខ្មែរ</button></div>
   </nav>
 </header>
 
@@ -190,12 +196,16 @@ footer p { font-size: .95rem; }
         <button class="chip" type="button">ນ້ຳຕົກຕາດ</button>
         <button class="chip" type="button">ເຂົ້າໜຽວ 2026</button>
         <button class="chip" type="button">BLACK OPS ລາວ</button>
+        <button class="chip" type="button">กำแพง</button>
+        <button class="chip" type="button">ตลาดน้ำ</button>
+        <button class="chip" type="button">កំពែង</button>
+        <button class="chip" type="button">អង្គរវត្ត</button>
       </div>
       <button class="reset" id="reset" type="button" data-i18n="reset">Reset text</button>
     </div>
     <div class="actions">
       <a class="download" href="https://github.com/rcampbellbassac/Kamphaeng/releases/latest/download/Kamphaeng.zip" data-i18n="download">Download the font</a>
-      <span class="meta" data-i18n="version_meta">Version 0.110, TTF and WOFF2</span>
+      <span class="meta" data-i18n="version_meta">Version 0.100, TTF and WOFF2</span>
     </div>
     <p class="beta-note" data-i18n="beta_note">This font is in beta.</p>
   </section>
@@ -203,12 +213,15 @@ footer p { font-size: .95rem; }
   <section aria-labelledby="stack-h">
     <h2 id="stack-h" data-i18n="stack_title">Vowels and tone marks stack correctly</h2>
     <p data-i18n="stack_body"></p>
-    <div class="stack" lang="lo">ກີ້ ເຂົ້າ ນ້ຳ ຟື້ ປີ່ ຢູ່ ໃຫຍ່ ຊື່ສັດ ກິ່ງໄມ້</div>
+    <div class="stack" lang="lo">ກີ້ ເຂົ້າ ນ້ຳ ຟື້ ປີ່ ຢູ່ ໃຫຍ່ ກິ່ງໄມ້</div>
+    <div class="stack" lang="th">กี้ น้ำ ปั่น ฟื้น ญุ่ง สร้าง</div>
+    <div class="stack" lang="km">ក្ដី ស្ត្រី ព្រះ ខ្មែរ អង្គរ</div>
   </section>
 
   <section aria-labelledby="chars-h">
     <h2 id="chars-h" data-i18n="chars_title">The Lao alphabet</h2>
     <p data-i18n="chars_body"></p>
+    <div class="tabs" role="tablist"><button class="tab" role="tab" type="button" data-set="lo" aria-selected="true">ລາວ</button><button class="tab" role="tab" type="button" data-set="th" aria-selected="false">ไทย</button><button class="tab" role="tab" type="button" data-set="km" aria-selected="false">ខ្មែរ</button></div>
     <div class="grid" id="grid" lang="lo"></div>
   </section>
 
@@ -247,8 +260,11 @@ footer p { font-size: .95rem; }
 </footer>
 
 <script>
-const STRINGS = {"en": {"tagline": "A heavy stencil font for Lao headlines, posters and signs.", "beta": "Beta", "beta_note": "This font is in beta. Letter shapes, spacing and stencil gaps may still change. Your feedback helps make it better.", "download": "Download the font", "github": "View the source on GitHub", "tester_hint": "Click the big text and type in Lao or English.", "size": "Size", "samples": "Try a sample", "reset": "Reset text", "stack_title": "Vowels and tone marks stack correctly", "stack_body": "Every vowel and tone mark sits in the right place, even when two are stacked above one letter.", "chars_title": "The Lao alphabet", "chars_body": "All 27 consonants, the vowels, tone marks and Lao digits. Latin letters and numbers come from Black Ops One.", "posters_title": "Made for big, loud text", "install_title": "How to install", "install_1": "Download the zip file from the latest release.", "install_2": "Unzip it and open Kamphaeng-Regular.ttf.", "install_3": "Click Install. The font is now in Word, LibreOffice, Canva and your other apps.", "install_web": "For websites, use the WOFF2 file.", "about_title": "About the font", "about_body": "Kamphaeng (ກຳແພງ means wall) is a bold display font. Its Lao letters are built from straight lines and 45-degree corners with stencil cuts, inspired by the popular Black Ops One. The Lao letters are based on Noto Sans Lao.", "license": "Free to use, share and change under the SIL Open Font License 1.1, including for commercial work.", "credits": "Lao letters derived from Noto Sans Lao by the Noto Project Authors. Latin letters from Black Ops One by James Grieshaber and Eben Sorkin.", "feedback": "Found a problem with a letter? Open an issue on GitHub.", "made_by": "Designed by Robert Martin Campbell.", "mt_note": "The Lao text on this page was machine-translated with Google Translate and then corrected.", "version_meta": "Version 0.110, TTF and WOFF2"}, "lo": {"tagline": "ຟອນ stencil ແບບໜາ ສຳລັບຫົວຂໍ້, ໂປສເຕີ ແລະ ປ້າຍພາສາລາວ.", "beta": "ເບຕ້າ", "beta_note": "ຟອນນີ້ຍັງຢູ່ໃນໄລຍະເບຕ້າ. ຮູບຮ່າງຕົວອັກສອນ, ໄລຍະຫ່າງ ແລະ ຮອຍຕັດ stencil ອາດຈະຍັງມີການປ່ຽນແປງ. ຄຳຕິຊົມຂອງທ່ານຊ່ວຍໃຫ້ມັນດີຂຶ້ນ.", "download": "ດາວໂຫລດຟອນ", "github": "ເບິ່ງໄຟລ໌ຕົ້ນສະບັບໃນ GitHub", "tester_hint": "ຄລິກທີ່ຕົວໜັງສືໃຫຍ່ ແລະພິມເປັນພາສາລາວ ຫຼື ພາສາອັງກິດ.", "size": "ຂະໜາດ", "samples": "ລອງຕົວຢ່າງ", "reset": "ກັບຄືນຂໍ້ຄວາມເດີມ", "stack_title": "ສະຫຼະ ແລະ ວັນນະຍຸດ ຊ້ອນກັນໄດ້ຖືກຕ້ອງ", "stack_body": "ສະຫຼະ ແລະ ວັນນະຍຸດທຸກຕົວຢູ່ໃນບ່ອນທີ່ຖືກຕ້ອງ, ເຖິງແມ່ນວ່າຈະມີສອງຕົວຊ້ອນກັນຢູ່ເທິງພະຍັນຊະນະດຽວກໍຕາມ.", "chars_title": "ອັກສອນລາວ", "chars_body": "ພະຍັນຊະນະທັງໝົດ 27 ຕົວ, ສະຫຼະ, ວັນນະຍຸດ ແລະ ເລກລາວ. ຕົວອັກສອນລາຕິນ ແລະ ຕົວເລກມາຈາກ Black Ops One.", "posters_title": "ສ້າງມາເພື່ອຂໍ້ຄວາມໃຫຍ່ ແລະ ໂດດເດັ່ນ", "install_title": "ວິທີການຕິດຕັ້ງ", "install_1": "ດາວໂຫລດໄຟລ໌ zip ຈາກເວີຊັນລ່າສຸດ.", "install_2": "ແຕກໄຟລ໌ zip ແລ້ວເປີດ Kamphaeng-Regular.ttf.", "install_3": "ກົດ Install (ຕິດຕັ້ງ). ຟອນຈະໃຊ້ໄດ້ໃນ Word, LibreOffice, Canva ແລະ ແອັບອື່ນໆ.", "install_web": "ສໍາລັບເວັບໄຊທ໌, ໃຊ້ໄຟລ໌ WOFF2.", "about_title": "ກ່ຽວກັບຟອນ", "about_body": "ກຳແພງ (Kamphaeng) ເປັນຟອນສຳລັບຫົວຂໍ້ທີ່ໜາ ແລະ ໂດດເດັ່ນ. ຕົວອັກສອນລາວຖືກສ້າງຈາກເສັ້ນຊື່ ແລະ ມຸມ 45 ອົງສາ ພ້ອມຮອຍຕັດແບບ stencil, ໄດ້ຮັບແຮງບັນດານໃຈຈາກຟອນ Black Ops One ທີ່ນິຍົມ. ຕົວອັກສອນລາວອີງໃສ່ Noto Sans Lao.", "license": "ບໍ່ເສຍຄ່າເພື່ອນໍາໃຊ້, ແບ່ງປັນແລະປ່ຽນແປງພາຍໃຕ້ SIL Open Font License 1.1, ລວມທັງສໍາລັບວຽກງານການຄ້າ.", "credits": "ຕົວອັກສອນລາວມາຈາກ Noto Sans Lao ໂດຍຜູ້ຂຽນໂຄງການ Noto. ຕົວອັກສອນລາຕິນຈາກ Black Ops One ໂດຍ James Grieshaber ແລະ Eben Sorkin.", "feedback": "ພົບບັນຫາກັບຕົວອັກສອນໃດໜຶ່ງບໍ? ແຈ້ງບັນຫາ (issue) ໃນ GitHub.", "made_by": "ອອກແບບໂດຍ Robert Martin Campbell.", "mt_note": "ພາສາລາວໃນໜ້ານີ້ແປດ້ວຍ Google Translate ແລະ ແກ້ໄຂບາງສ່ວນແລ້ວ.", "version_meta": "ເວີຊັນ 0.110, ໄຟລ໌ TTF ແລະ WOFF2"}};
-const DEFAULT_TEXT = { en: "ກຳແພງ STENCIL", lo: "ກຳແພງ ສະບາຍດີ" };
+const STRINGS = {"en": {"tagline": "A heavy stencil font for Lao, Thai and Khmer headlines, posters and signs.", "beta": "Beta", "beta_note": "This font is in beta. Letter shapes, spacing and stencil gaps may still change. Your feedback helps make it better.", "download": "Download the font", "github": "View the source on GitHub", "tester_hint": "Click the big text and type in Lao or English.", "size": "Size", "samples": "Try a sample", "reset": "Reset text", "stack_title": "Vowels and tone marks stack correctly", "stack_body": "Every vowel and tone mark sits in the right place, even when two are stacked above one letter.", "chars_title": "The Lao alphabet", "chars_body": "All 27 Lao consonants, the vowels, tone marks and Lao digits, plus full Thai and Khmer. Latin letters and numbers come from Black Ops One.", "posters_title": "Made for big, loud text", "install_title": "How to install", "install_1": "Download the zip file from the latest release.", "install_2": "Unzip it and open Kamphaeng-Regular.ttf.", "install_3": "Click Install. The font is now in Word, LibreOffice, Canva and your other apps.", "install_web": "For websites, use the WOFF2 file.", "about_title": "About the font", "about_body": "Kamphaeng (ກຳແພງ means wall) is a bold display font. Its Lao, Thai and Khmer letters are built from straight lines and 45-degree corners with stencil cuts, inspired by the popular Black Ops One. They are based on Noto Sans Lao, Noto Sans Thai and Noto Sans Khmer.", "license": "Free to use, share and change under the SIL Open Font License 1.1, including for commercial work.", "credits": "Lao, Thai and Khmer letters derived from Noto Sans Lao, Thai and Khmer by the Noto Project Authors. Latin letters from Black Ops One by James Grieshaber and Eben Sorkin.", "feedback": "Found a problem with a letter? Open an issue on GitHub.", "made_by": "Designed by Robert Martin Campbell.", "mt_note": "The Lao text on this page was machine-translated with Google Translate and then corrected.", "version_meta": "Version 0.200, TTF and WOFF2"}, "lo": {"tagline": "ຟອນ stencil ແບບໜາ ສຳລັບຫົວຂໍ້, ໂປສເຕີ ແລະ ປ້າຍພາສາລາວ, ໄທ ແລະ ຂະເໝນ.", "beta": "ເບຕ້າ", "beta_note": "ຟອນນີ້ຍັງຢູ່ໃນໄລຍະເບຕ້າ. ຮູບຮ່າງຕົວອັກສອນ, ໄລຍະຫ່າງ ແລະ ຮອຍຕັດ stencil ອາດຈະຍັງມີການປ່ຽນແປງ. ຄຳຕິຊົມຂອງທ່ານຊ່ວຍໃຫ້ມັນດີຂຶ້ນ.", "download": "ດາວໂຫລດຟອນ", "github": "ເບິ່ງໄຟລ໌ຕົ້ນສະບັບໃນ GitHub", "tester_hint": "ຄລິກທີ່ຕົວໜັງສືໃຫຍ່ ແລະພິມເປັນພາສາລາວ ຫຼື ພາສາອັງກິດ.", "size": "ຂະໜາດ", "samples": "ລອງຕົວຢ່າງ", "reset": "ກັບຄືນຂໍ້ຄວາມເດີມ", "stack_title": "ສະຫຼະ ແລະ ວັນນະຍຸດ ຊ້ອນກັນໄດ້ຖືກຕ້ອງ", "stack_body": "ສະຫຼະ ແລະ ວັນນະຍຸດທຸກຕົວຢູ່ໃນບ່ອນທີ່ຖືກຕ້ອງ, ເຖິງແມ່ນວ່າຈະມີສອງຕົວຊ້ອນກັນຢູ່ເທິງພະຍັນຊະນະດຽວກໍຕາມ.", "chars_title": "ອັກສອນລາວ", "chars_body": "ພະຍັນຊະນະລາວທັງໝົດ 27 ຕົວ, ສະຫຼະ, ວັນນະຍຸດ ແລະ ເລກລາວ, ພ້ອມທັງອັກສອນໄທ ແລະ ຂະເໝນຄົບຊຸດ. ຕົວອັກສອນລາຕິນ ແລະ ຕົວເລກມາຈາກ Black Ops One.", "posters_title": "ສ້າງມາເພື່ອຂໍ້ຄວາມໃຫຍ່ ແລະ ໂດດເດັ່ນ", "install_title": "ວິທີການຕິດຕັ້ງ", "install_1": "ດາວໂຫລດໄຟລ໌ zip ຈາກເວີຊັນລ່າສຸດ.", "install_2": "ແຕກໄຟລ໌ zip ແລ້ວເປີດ Kamphaeng-Regular.ttf.", "install_3": "ກົດ Install (ຕິດຕັ້ງ). ຟອນຈະໃຊ້ໄດ້ໃນ Word, LibreOffice, Canva ແລະ ແອັບອື່ນໆ.", "install_web": "ສໍາລັບເວັບໄຊທ໌, ໃຊ້ໄຟລ໌ WOFF2.", "about_title": "ກ່ຽວກັບຟອນ", "about_body": "ກຳແພງ (Kamphaeng) ເປັນຟອນສຳລັບຫົວຂໍ້ທີ່ໜາ ແລະ ໂດດເດັ່ນ. ຕົວອັກສອນລາວ, ໄທ ແລະ ຂະເໝນຖືກສ້າງຈາກເສັ້ນຊື່ ແລະ ມຸມ 45 ອົງສາ ພ້ອມຮອຍຕັດແບບ stencil, ໄດ້ຮັບແຮງບັນດານໃຈຈາກຟອນ Black Ops One ທີ່ນິຍົມ. ອີງໃສ່ Noto Sans Lao, Noto Sans Thai ແລະ Noto Sans Khmer.", "license": "ບໍ່ເສຍຄ່າເພື່ອນໍາໃຊ້, ແບ່ງປັນແລະປ່ຽນແປງພາຍໃຕ້ SIL Open Font License 1.1, ລວມທັງສໍາລັບວຽກງານການຄ້າ.", "credits": "ຕົວອັກສອນລາວ, ໄທ ແລະ ຂະເໝນມາຈາກ Noto Sans Lao, Thai ແລະ Khmer ໂດຍຜູ້ຂຽນໂຄງການ Noto. ຕົວອັກສອນລາຕິນຈາກ Black Ops One ໂດຍ James Grieshaber ແລະ Eben Sorkin.", "feedback": "ພົບບັນຫາກັບຕົວອັກສອນໃດໜຶ່ງບໍ? ແຈ້ງບັນຫາ (issue) ໃນ GitHub.", "made_by": "ອອກແບບໂດຍ Robert Martin Campbell.", "mt_note": "ພາສາລາວໃນໜ້ານີ້ແປດ້ວຍ Google Translate ແລະ ແກ້ໄຂບາງສ່ວນແລ້ວ.", "version_meta": "ເວີຊັນ 0.200, ໄຟລ໌ TTF ແລະ WOFF2"}, "th": {"tagline": "ฟอนต์ฉลุลายเส้นหนาสำหรับพาดหัว โปสเตอร์ และป้ายภาษาลาว ไทย และเขมร", "beta": "รุ่นทดสอบ (Beta)", "beta_note": "ฟอนต์นี้ยังอยู่ในรุ่นทดสอบ รูปทรงตัวอักษร ระยะห่าง และร่องฉลุอาจมีการปรับเปลี่ยน ความคิดเห็นของคุณจะช่วยพัฒนาฟอนต์ให้ดียิ่งขึ้น", "download": "ดาวน์โหลดฟอนต์", "github": "ดูซอร์สโค้ดบน GitHub", "tester_hint": "คลิกที่ข้อความขนาดใหญ่แล้วพิมพ์ภาษาลาวหรืออังกฤษ", "size": "ขนาด", "samples": "ลองดูตัวอย่าง", "reset": "รีเซ็ตข้อความ", "stack_title": "สระและวรรณยุกต์ซ้อนกันอย่างถูกต้อง", "stack_body": "สระและวรรณยุกต์ทุกตัวอยู่ในตำแหน่งที่เหมาะสม แม้จะซ้อนกันสองชั้นเหนือตัวอักษรเดียว", "chars_title": "ชุดตัวอักษรลาว", "chars_body": "ครบทั้งพยัญชนะลาว 27 ตัว สระ วรรณยุกต์ และตัวเลขลาว พร้อมชุดอักษรไทยและเขมรอย่างครบถ้วน ส่วนตัวอักษรละตินและตัวเลขอารบิกมาจากฟอนต์ Black Ops One", "posters_title": "ออกแบบมาเพื่อข้อความขนาดใหญ่ที่โดดเด่นสะดุดตา", "install_title": "วิธีติดตั้ง", "install_1": "ดาวน์โหลดไฟล์ zip จากรุ่นล่าสุด", "install_2": "แตกไฟล์แล้วเปิด Kamphaeng-Regular.ttf", "install_3": "คลิก ติดตั้ง (Install) ตอนนี้ฟอนต์พร้อมใช้งานใน Word, LibreOffice, Canva และแอปอื่นๆ ของคุณแล้ว", "install_web": "สำหรับเว็บไซต์ ให้ใช้ไฟล์ WOFF2", "about_title": "เกี่ยวกับฟอนต์", "about_body": "Kamphaeng (กำแพง / ກຳແພງ แปลว่า กำแพง) เป็นฟอนต์พาดหัวตัวหนา ตัวอักษรลาว ไทย และเขมรสร้างขึ้นจากเส้นตรงและมุม 45 องศาพร้อมร่องฉลุ โดยได้รับแรงบันดาลใจจากฟอนต์ยอดนิยมอย่าง Black Ops One และพัฒนาต่อยอดจาก Noto Sans Lao, Noto Sans Thai และ Noto Sans Khmer", "license": "ใช้งาน แบ่งปัน และดัดแปลงได้ฟรีภายใต้สัญญาอนุญาต SIL Open Font License 1.1 รวมถึงการใช้งานเชิงพาณิชย์", "credits": "ตัวอักษรลาว ไทย และเขมรพัฒนาต่อยอดจาก Noto Sans Lao, Thai และ Khmer โดย Noto Project Authors ส่วนตัวอักษรละตินมาจาก Black Ops One โดย James Grieshaber และ Eben Sorkin", "feedback": "พบปัญหาเกี่ยวกับตัวอักษรใช่ไหม? เปิด Issue แจ้งได้บน GitHub", "made_by": "ออกแบบโดย Robert Martin Campbell", "mt_note": "ข้อความภาษาไทยในหน้านี้แปลโดยผู้ช่วย AI และยังไม่ได้รับการตรวจสอบโดยเจ้าของภาษา", "version_meta": "รุ่น 0.200 ไฟล์ TTF และ WOFF2"}, "km": {"tagline": "ពុម្ពអក្សរឆ្លាក់ដិតក្រាស់សម្រាប់ចំណងជើង ផ្ទាំងរូបភាព និងស្លាកសញ្ញាភាសាឡាវ ថៃ និងខ្មែរ។", "beta": "កំណែសាកល្បង (Beta)", "beta_note": "ពុម្ពអក្សរនេះកំពុងស្ថិតក្នុងកំណែសាកល្បង។ ទម្រង់តួអក្សរ គម្លាត និងស្នាមឆ្លាក់អាចនឹងមានការផ្លាស់ប្តូរ។ មតិយោបល់របស់អ្នកជួយធ្វើឱ្យវាកាន់តែប្រសើរឡើង។", "download": "ទាញយកពុម្ពអក្សរ", "github": "មើលកូដដើមនៅលើ GitHub", "tester_hint": "ចុចលើអត្ថបទធំ រួចវាយជាភាសាឡាវ ឬអង់គ្លេស។", "size": "ទំហំ", "samples": "សាកល្បងអត្ថបទគំរូ", "reset": "កំណត់អត្ថបទឡើងវិញ", "stack_title": "ស្រៈ ជើងអក្សរ និងវណ្ណយុត្តិដាក់ត្រួតគ្នាបានត្រឹមត្រូវ", "stack_body": "គ្រប់ស្រៈ ជើងអក្សរ និងវណ្ណយុត្តិទាំងអស់ស្ថិតនៅទីតាំងត្រឹមត្រូវ ទោះបីជាដាក់ត្រួតគ្នាពីរជាន់លើតួអក្សរតែមួយក៏ដោយ។", "chars_title": "តួអក្សរឡាវ", "chars_body": "មានព្យញ្ជនៈឡាវទាំង 27 តួ ស្រៈ វណ្ណយុត្តិ និងលេខឡាវ រួមទាំងអក្សរថៃ និងខ្មែរពេញលេញ។ តួអក្សរឡាតាំង និងលេខមានប្រភពមកពី Black Ops One។", "posters_title": "បង្កើតឡើងសម្រាប់អត្ថបទធំ និងលេចធ្លោ", "install_title": "របៀបដំឡើង", "install_1": "ទាញយកឯកសារ zip ពីកំណែចេញផ្សាយចុងក្រោយបំផុត។", "install_2": "ពន្លាឯកសារ រួចបើក Kamphaeng-Regular.ttf។", "install_3": "ចុច Install។ ឥឡូវនេះពុម្ពអក្សរមាននៅក្នុង Word, LibreOffice, Canva និងកម្មវិធីផ្សេងទៀតរបស់អ្នកហើយ។", "install_web": "សម្រាប់គេហទំព័រ សូមប្រើឯកសារ WOFF2។", "about_title": "អំពីពុម្ពអក្សរ", "about_body": "Kamphaeng (កំពែង / ກຳແພງ មានន័យថា កំពែង) គឺជាពុម្ពអក្សរចំណងជើងដិតក្រាស់។ តួអក្សរឡាវ ថៃ និងខ្មែរត្រូវបានបង្កើតឡើងពីបន្ទាត់ត្រង់ និងជ្រុង 45 ដឺក្រេជាមួយនឹងស្នាមឆ្លាក់ ដែលទទួលការបំផុសគំនិតពីពុម្ពអក្សរដ៏ពេញនិយម Black Ops One។ តួអក្សរទាំងនេះផ្អែកលើ Noto Sans Lao, Noto Sans Thai និង Noto Sans Khmer។", "license": "ប្រើប្រាស់ ចែករំលែក និងកែប្រែដោយឥតគិតថ្លៃក្រោមអាជ្ញាប័ណ្ណ SIL Open Font License 1.1 រួមទាំងសម្រាប់ការងារពាណិជ្ជកម្មផងដែរ។", "credits": "តួអក្សរឡាវ ថៃ និងខ្មែរមានមូលដ្ឋានពី Noto Sans Lao, Thai និង Khmer ដោយ Noto Project Authors។ តួអក្សរឡាតាំងមកពី Black Ops One ដោយ James Grieshaber និង Eben Sorkin។", "feedback": "រកឃើញបញ្ហាជាមួយតួអក្សរមែនទេ? បើក Issue នៅលើ GitHub។", "made_by": "រចនាដោយ Robert Martin Campbell។", "mt_note": "អត្ថបទភាសាខ្មែរនៅលើទំព័រនេះត្រូវបានបកប្រែដោយជំនួយការ AI ហើយមិនទាន់ត្រូវបានត្រួតពិនិត្យដោយជនជាតិដើមនៅឡើយទេ។", "version_meta": "កំណែ 0.200 ឯកសារ TTF និង WOFF2"}};
+const DEFAULT_TEXT = { en: "ກຳແພງ STENCIL", lo: "ກຳແພງ ສະບາຍດີ", th: "กำแพง สวัสดีครับ", km: "កំពែង សួស្តី" };
+const THAI = [...Array(0x5B).keys()].map(i => 0x0E01 + i).filter(c => (c <= 0x0E3A) || (c >= 0x0E3F && c <= 0x0E5B));
+const KHMER = [...Array(0x7E).keys()].map(i => 0x1780 + i).filter(c => c <= 0x17DD || (c >= 0x17E0 && c <= 0x17E9) || (c >= 0x17F0 && c <= 0x17F9));
+const MARKRE = /\p{M}/u;
 const LAO = [0x0E81,0x0E82,0x0E84,0x0E87,0x0E88,0x0E8A,0x0E8D,0x0E94,0x0E95,0x0E96,0x0E97,0x0E99,0x0E9A,0x0E9B,0x0E9C,0x0E9D,0x0E9E,0x0E9F,0x0EA1,0x0EA2,0x0EA3,0x0EA5,0x0EA7,0x0EAA,0x0EAB,0x0EAD,0x0EAE,0x0EDC,0x0EDD,
   0x0EAF,0x0EB0,0x0EB1,0x0EB2,0x0EB3,0x0EB4,0x0EB5,0x0EB6,0x0EB7,0x0EB8,0x0EB9,0x0EBB,0x0EBC,0x0EBD,0x0EC0,0x0EC1,0x0EC2,0x0EC3,0x0EC4,0x0EC6,
   0x0EC8,0x0EC9,0x0ECA,0x0ECB,0x0ECC,0x0ECD,0x0ED0,0x0ED1,0x0ED2,0x0ED3,0x0ED4,0x0ED5,0x0ED6,0x0ED7,0x0ED8,0x0ED9];
@@ -265,16 +281,16 @@ function load(k) { try { return localStorage.getItem(k); } catch (e) { return nu
 
 function setLang(l) {
   lang = l;
-  document.documentElement.lang = l === "lo" ? "lo" : "en";
+  document.documentElement.lang = l;
   document.querySelectorAll("[data-i18n]").forEach(el => {
-    const s = STRINGS[l][el.dataset.i18n];
+    const s = (STRINGS[l] || STRINGS.en)[el.dataset.i18n] || STRINGS.en[el.dataset.i18n];
     if (s) el.textContent = s;
   });
-  document.getElementById("lang").textContent = l === "lo" ? "English" : "ລາວ";
+  document.querySelectorAll(".lang").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
   if (!edited) tester.textContent = DEFAULT_TEXT[l];
   store("kp-lang", l);
 }
-document.getElementById("lang").addEventListener("click", () => setLang(lang === "en" ? "lo" : "en"));
+document.querySelectorAll(".lang").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
 
 function setSize(px) {
   tester.style.setProperty("--size", px + "px");
@@ -292,21 +308,31 @@ document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () =
 document.getElementById("reset").addEventListener("click", () => { edited = false; tester.textContent = DEFAULT_TEXT[lang]; });
 
 const grid = document.getElementById("grid");
-for (const cp of LAO) {
-  const cell = document.createElement("div");
-  cell.className = "cell";
-  const ch = String.fromCodePoint(cp);
-  cell.innerHTML = `<b>${MARKS.has(cp) ? "◌" + ch : ch}</b><small>U+${cp.toString(16).toUpperCase().padStart(4, "0")}</small>`;
-  cell.title = `U+${cp.toString(16).toUpperCase()}`;
-  grid.appendChild(cell);
+function drawGrid(set) {
+  grid.innerHTML = "";
+  grid.lang = set;
+  for (const cp of { lo: LAO, th: THAI, km: KHMER }[set]) {
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    const ch = String.fromCodePoint(cp);
+    const b = document.createElement("b"); b.textContent = (MARKS.has(cp) || MARKRE.test(ch)) ? "◌" + ch : ch;
+    const sm = document.createElement("small"); sm.textContent = "U+" + cp.toString(16).toUpperCase().padStart(4, "0");
+    cell.append(b, sm); cell.title = sm.textContent;
+    grid.appendChild(cell);
+  }
 }
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === t)); drawGrid(t.dataset.set);
+}));
+drawGrid("lo");
 
 const fit = () => setSize(Math.max(32, Math.min(260, Math.round(window.innerWidth * 0.13))));
 size.value = Math.max(32, Math.min(260, Math.round(window.innerWidth * 0.13)));
 fit();
 const param = new URLSearchParams(location.search).get("lang");
 const saved = load("kp-lang");
-setLang(param === "lo" || param === "en" ? param : saved || ((navigator.language || "").toLowerCase().startsWith("lo") ? "lo" : "en"));
+const navl = (navigator.language || "").slice(0, 2).toLowerCase();
+setLang(["en", "lo", "th", "km"].includes(param) ? param : saved || (["lo", "th", "km"].includes(navl) ? navl : "en"));
 </script>
 </body>
 </html>

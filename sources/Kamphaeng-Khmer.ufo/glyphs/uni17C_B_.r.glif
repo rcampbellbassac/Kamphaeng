@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni17CB.r" format="2">
+  <outline>
+    <contour>
+      <point x="-176.0" y="928" type="line"/>
+      <point x="-339.0" y="928" type="line"/>
+      <point x="-339.0" y="733" type="line"/>
+      <point x="-176.0" y="733" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -13,7 +13,7 @@ from fontTools import subset
 from fontTools.merge import Merger
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.scaleUpem import scale_upem
-from lib import BASE, LATIN, ROOT, fetch_references, lao_glyph_names, tt_glyph
+from lib import BASE, LATIN, ROOT, SCRIPTS, ensure_script_base, fetch_references, lao_glyph_names, script_glyph_names, subset_layout, tt_glyph
 
 UFO = ROOT / "sources/Kamphaeng-Regular.ufo"
 OUT = ROOT / "fonts"
@@ -52,6 +52,34 @@ def lao_part(tmp: Path) -> Path:
     shift_anchors(tt, {g: dx for g, dx in ufo.lib.get("kamphaeng.xshift", {}).items() if dx})
     _subset(tt, LAO_UNICODES)
     p = tmp / "lao.ttf"
+    tt.save(p)
+    return p
+
+
+def script_part(tmp: Path, script: str) -> Path | None:
+    """Thai / Khmer: subset Black base with outlines replaced from the script's UFO."""
+    cfg = SCRIPTS[script]
+    if not cfg["ufo"].exists():
+        return None
+    tt = TTFont(ensure_script_base(script))
+    ufo = ufoLib2.Font.open(cfg["ufo"])
+    glyf, hmtx = tt["glyf"], tt["hmtx"]
+    for name in script_glyph_names(tt, script):
+        if name not in ufo:
+            continue
+        g = ufo[name]
+        contours = [[{"x": p.x, "y": p.y, "type": p.type or "offcurve"} for p in c] for c in g]
+        glyf[name] = tt_glyph(contours)
+        glyf[name].recalcBounds(glyf)
+        hmtx[name] = (int(round(g.width)), getattr(glyf[name], "xMin", 0) if contours else 0)
+    shift_anchors(tt, {g: dx for g, dx in ufo.lib.get("kamphaeng.xshift", {}).items() if dx})
+    subset_layout(tt, cfg["unicodes"])
+    os2 = tt["OS/2"]
+    if os2.version > 4:
+        os2.version = 4
+        for a in ("usLowerOpticalPointSize", "usUpperOpticalPointSize"):
+            if hasattr(os2, a): delattr(os2, a)
+    p = tmp / f"{script}.ttf"
     tt.save(p)
     return p
 
@@ -134,8 +162,16 @@ def build():
     ufo = ufoLib2.Font.open(UFO)
     with tempfile.TemporaryDirectory() as d:
         d = Path(d)
-        latin, lao = latin_part(d), lao_part(d)
-        merged = Merger().merge([str(latin), str(lao)])
+        parts = [latin_part(d), lao_part(d)] + [p for p in (script_part(d, "thai"), script_part(d, "khmer")) if p]
+        for p in parts:  # merge-compatible OS/2 (v4) and post (format 2) across parts
+            t = TTFont(p)
+            if t["OS/2"].version > 4:
+                t["OS/2"].version = 4
+                for a in ("usLowerOpticalPointSize", "usUpperOpticalPointSize"):
+                    if hasattr(t["OS/2"], a): delattr(t["OS/2"], a)
+            t["post"].formatType = 2.0
+            t.save(p)
+        merged = Merger().merge([str(p) for p in parts])
     finish(merged, ufo)
     ttf = OUT / "Kamphaeng-Regular.ttf"
     merged.save(ttf)
