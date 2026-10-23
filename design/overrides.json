@@ -1,6 +1,6 @@
 {
  "uni0ED6": {
-  "junctions": 0,
-  "note": "auto junction cut left a floating sliver at 0.110"
+  "auto": false,
+  "note": "automatic gaps left a thin tongue inside the counter; the slot-shaped counter reads better without a stencil gap (0.110)"
  }
 }
